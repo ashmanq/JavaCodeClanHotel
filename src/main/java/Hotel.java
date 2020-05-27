@@ -5,11 +5,13 @@ public class Hotel {
     private String name;
     private ArrayList<Bedroom> bedrooms;
     private ArrayList<ConferenceRoom> conferenceRooms;
+    private ArrayList<Booking> bedroomBookings;
 
     public Hotel(String name, ArrayList<Bedroom> bedrooms, ArrayList<ConferenceRoom> conferenceRooms){
         this.name = name;
         this.bedrooms = bedrooms;
         this.conferenceRooms = conferenceRooms;
+        this.bedroomBookings = new ArrayList<>();
     }
 
     public String getName() {
@@ -51,10 +53,6 @@ public class Hotel {
     }
 
 
-
-
-
-
     public int doesConferenceRoomExist(String name){
         int index = -1;
 
@@ -79,5 +77,18 @@ public class Hotel {
         if(indexOfConferenceRoom != -1){
             this.conferenceRooms.get(indexOfConferenceRoom).checkOutGuests();
         }
+    }
+
+    public int getNoOfBookings(){
+        return this.bedroomBookings.size();
+    }
+
+    public Booking createBookingForBedroom(Bedroom bedroom, int noOfNights){
+        if(this.bedrooms.contains(bedroom)){
+            Booking booking = new Booking(bedroom, noOfNights);
+            this.bedroomBookings.add(booking);
+            return booking;
+        }
+        return null;
     }
 }

@@ -24,8 +24,8 @@ public class HotelTest {
         guest1 = new Guest("Aragorn");
         guest2 = new Guest("Merry");
         guest3 = new Guest("Pippin");
-        bedroom1 = new Bedroom(1, 2, "Double");
-        bedroom2 = new Bedroom(2, 2, "Double");
+        bedroom1 = new Bedroom(1, 2, "Double", 10.00);
+        bedroom2 = new Bedroom(2, 2, "Double", 15.00);
         conferenceRoom1 = new ConferenceRoom("The Mines of Moria", 3);
         conferenceRoom2 = new ConferenceRoom("Rivendell", 4);
 
@@ -118,5 +118,16 @@ public class HotelTest {
         hotel1.checkInGuestToConferenceRoom(guest2, "Rivendell");
         hotel1.checkOutGuestFromConferenceRoom("Rivendell");
         assertEquals(0, conferenceRoom2.getNoGuestsInConferenceRoom());
+    }
+
+    @Test
+    public void bedroomBookingsStartAtZero(){
+        assertEquals(0, hotel1.getNoOfBookings());
+    }
+
+    @Test
+    public void canBookBedroom(){
+        hotel1.createBookingForBedroom(bedroom1, 4);
+        assertEquals(1, hotel1.getNoOfBookings());
     }
 }

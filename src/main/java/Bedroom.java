@@ -6,12 +6,14 @@ public class Bedroom {
     private int capacity;
     private ArrayList<Guest> guests;
     private String roomType;
+    private Double rate;
 
-    public Bedroom(int roomNo, int capacity, String roomType) {
+    public Bedroom(int roomNo, int capacity, String roomType, Double rate) {
         this.roomNo = roomNo;
         this.capacity = capacity;
         this.roomType = roomType;
         this.guests = new ArrayList<Guest>();
+        this.rate = rate;
     }
 
     public int getRoomNo() {
@@ -28,6 +30,14 @@ public class Bedroom {
 
     public int getNoGuestsInRoom() {
         return this.guests.size();
+    }
+
+    public Double getRate() {
+        return this.rate;
+    }
+
+    public void setRate(Double newRate) {
+        this.rate = newRate;
     }
 
     public boolean isFull(){
