@@ -6,10 +6,10 @@ public class Hotel {
     private ArrayList<Bedroom> bedrooms;
     private ArrayList<ConferenceRoom> conferenceRooms;
 
-    public Hotel(String name){
+    public Hotel(String name, ArrayList<Bedroom> bedrooms, ArrayList<ConferenceRoom> conferenceRooms){
         this.name = name;
-        bedrooms = new ArrayList<Bedroom>();
-        conferenceRooms = new ArrayList<ConferenceRoom>();
+        this.bedrooms = bedrooms;
+        this.conferenceRooms = conferenceRooms;
     }
 
     public String getName() {
@@ -22,5 +22,62 @@ public class Hotel {
 
     public int getNoOfConferenceRooms() {
         return this.conferenceRooms.size();
+    }
+
+    public int doesBedroomExist(int bedroomNo){
+        int index = -1;
+
+        for(int i=0; i < getNoOfBedrooms(); i++){
+            if(this.bedrooms.get(i).getRoomNo() == bedroomNo){
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
+    public void checkInGuestToBedroom(Guest guest, int bedroomNo) {
+        int indexOfBedroom = this.doesBedroomExist(bedroomNo);
+        if(indexOfBedroom != -1){
+            this.bedrooms.get(indexOfBedroom).addGuest(guest);
+        }
+    }
+
+    public void checkOutGuestFromBedroom(int bedroomNo) {
+        int indexOfBedroom = this.doesBedroomExist(bedroomNo);
+        if(indexOfBedroom != -1){
+            this.bedrooms.get(indexOfBedroom).checkOutGuests();
+        }
+    }
+
+
+
+
+
+
+    public int doesConferenceRoomExist(String name){
+        int index = -1;
+
+        for(int i=0; i < getNoOfBedrooms(); i++){
+            if(this.conferenceRooms.get(i).getName() == name){
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
+    public void checkInGuestToConferenceRoom(Guest guest, String name) {
+        int indexOfConferenceRoom = this.doesConferenceRoomExist(name);
+        if(indexOfConferenceRoom != -1){
+            this.conferenceRooms.get(indexOfConferenceRoom).addGuest(guest);
+        }
+    }
+
+    public void checkOutGuestFromConferenceRoom(String name) {
+        int indexOfConferenceRoom = this.doesConferenceRoomExist(name);
+        if(indexOfConferenceRoom != -1){
+            this.conferenceRooms.get(indexOfConferenceRoom).checkOutGuests();
+        }
     }
 }

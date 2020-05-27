@@ -64,4 +64,12 @@ public class BedroomTest {
         assertEquals(true, bedroom1.isFull());
         assertEquals(2, bedroom1.getNoGuestsInRoom());
     }
+
+    @Test
+    public void canRemoveGuestsFromRoom(){
+        bedroom1.addGuest(guest1);
+        bedroom1.addGuest(guest2);
+        bedroom1.checkOutGuests();
+        assertEquals(0, bedroom1.getNoGuestsInRoom());
+    }
 }

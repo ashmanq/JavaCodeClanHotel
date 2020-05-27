@@ -39,4 +39,8 @@ public class Bedroom {
             this.guests.add(guest);
         }
     }
+
+    public void checkOutGuests(){
+        this.guests.clear();
+    }
 }
